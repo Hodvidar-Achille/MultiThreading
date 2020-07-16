@@ -1,15 +1,15 @@
 package com.hodvidar.openclassroom.multithreading;
 
 /**
- * https://openclassrooms.com/fr/courses/2654566-java-et-le-multithreading/2667696-avant-toutes-choses#/id/r-2667578
+ * https://openclassrooms.com/fr/courses/2654566-java-et-le-multithreading/2667835-protegeons-nos-variables#/id/r-2667702
  */
-class DummyRunnable implements Runnable {
+public class StillDummyRunnable implements Runnable  {
 
-	public static Integer counter = 0;
+	public static volatile  Integer counter = 0;
 
-	public static Integer expectedCounter = 0;
+	public static volatile  Integer expectedCounter = 0;
 
-	public DummyRunnable() {
+	public StillDummyRunnable() {
 	}
 
 	public void run() {
