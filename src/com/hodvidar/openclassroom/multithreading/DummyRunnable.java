@@ -3,7 +3,7 @@ package com.hodvidar.openclassroom.multithreading;
 /**
  * https://openclassrooms.com/fr/courses/2654566-java-et-le-multithreading/2667696-avant-toutes-choses#/id/r-2667578
  */
-class DummyRunnable implements Runnable {
+public class DummyRunnable implements Runnable {
 
 	public static Integer counter = 0;
 
