@@ -28,6 +28,7 @@ public class PersonneInterroge extends Thread implements AutoCloseable {
 		try{
 			verrou.lock();
 			System.out.println(nom + ", votre réponse ?");
+			Thread.sleep(1000);
 			System.out.println("Response ! "+System.currentTimeMillis());
 			//On informe redemande une question
 			question.signalAll();

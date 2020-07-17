@@ -27,6 +27,7 @@ public class Journaliste extends Thread implements AutoCloseable {
 		verrou.lock();
 		try{
 			System.out.println(nom + ", posez votre question : ");
+			Thread.sleep(1000);
 			System.out.println("Question ? "+System.currentTimeMillis());
 			//On libère le thread de réponse
 			reponse.signalAll();
