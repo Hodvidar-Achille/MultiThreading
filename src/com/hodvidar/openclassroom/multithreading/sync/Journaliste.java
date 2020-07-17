@@ -55,15 +55,20 @@ public class Journaliste extends Thread implements AutoCloseable {
 	@Override
 	public void close() throws Exception {
 		System.out.println("End of thread Journaliste");
+		verrou.lock();
 		try {
-			this.question.signalAll();
-		} catch (Exception e) {
-			GenericLogger.logException(e);
-		}
-		try {
-			this.reponse.signalAll();
-		} catch (Exception e) {
-			GenericLogger.logException(e);
+			try {
+				this.question.signalAll();
+			} catch (Exception e) {
+				GenericLogger.logException(e);
+			}
+			try {
+				this.reponse.signalAll();
+			} catch (Exception e) {
+				GenericLogger.logException(e);
+			}
+		} finally {
+			verrou.unlock();
 		}
 		this.interrupt();
 	}

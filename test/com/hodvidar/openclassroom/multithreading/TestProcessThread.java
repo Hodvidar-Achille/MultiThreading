@@ -143,8 +143,8 @@ public class TestProcessThread {
 		Lock lock = new ReentrantLock();
 		Condition question = lock.newCondition();
 		Condition response = lock.newCondition();
-		Journaliste j = new Journaliste("PPDA", lock, question, response, 3);
-		PersonneInterroge p = new PersonneInterroge("cysboy", lock, question, response, 3);
+		Journaliste j = new Journaliste("Journaliste", lock, question, response, 3);
+		PersonneInterroge p = new PersonneInterroge("Interviewé", lock, question, response, 3);
 
 		j.start();
 		p.start();
