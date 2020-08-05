@@ -11,6 +11,7 @@ import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.Exchanger;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -27,6 +28,8 @@ import java.util.concurrent.locks.ReentrantLock;
 import org.junit.Test;
 
 import com.hodvidar.openclassroom.multithreading.callable.FolderScanner;
+import com.hodvidar.openclassroom.multithreading.exchanger.FileFinder;
+import com.hodvidar.openclassroom.multithreading.exchanger.FileMover;
 import com.hodvidar.openclassroom.multithreading.semaphore.AfterBarrier;
 import com.hodvidar.openclassroom.multithreading.semaphore.Client;
 import com.hodvidar.openclassroom.multithreading.semaphore.CyclicBarrierExample;
@@ -686,16 +689,20 @@ public class TestProcessThread {
 	 */
 	@Test
 	public void testExchanger() {
-		System.out.println("testCountDownLatch - START");
+		System.out.println("testExchanger - START");
 		long start = System.currentTimeMillis();
 
-		// TODO
+		Exchanger ex = new Exchanger();
+		Thread t1 = new Thread(new FileFinder(ex));
+		Thread t2 = new Thread(new FileMover(ex));
+		t1.start();
+		t2.start();
 
-		MyThreadUtil.waitForEndOfThread();
+		MyThreadUtil.waitForEndOfThread(t1, t2);
 		long end = System.currentTimeMillis();
 		long duree = end - start;
 		System.out.println("Temps d'execution = "+duree+"ms");
-		System.out.println("testCountDownLatch - END");
+		System.out.println("testExchanger - END");
 	}
 
 }
